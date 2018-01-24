@@ -215,7 +215,7 @@
                         if (sw == "on") {
                             console.log("Bold Text turned on..");
                             document.getElementById('MyCommand').innerHTML = "Bold Text turned on..";
-                            responsivevoice.speak("Bold Text Turned on");
+                            responsiveVoice.speak("Bold Text Turned on");
                             var bold_text = true;
                         }
                         if (sw == "off" || sw == "of") {
@@ -237,7 +237,7 @@
                     'set font size *size': function (size) {
                         font_size = size;
                         document.getElementById('MyCommand').innerHTML = "Font Size set to " + size;
-                        responsivevoice.speak("Font Size set to " + size);
+                        responsiveVoice.speak("Font Size set to " + size);
                         console.log(font_size);
                     }
                 };
@@ -256,7 +256,7 @@
                 var reloadCommand = {
                     'reload': function () {
                         location.reload();
-                        responsivevoice.speak("Tab has been reloaded successfully");
+                        responsiveVoice.speak("Tab has been reloaded successfully");
                     }
                 };
                 annyang.addCommands(reloadCommand);
@@ -264,7 +264,7 @@
                 var speakCommand = {
                     'speak': function () {
                         var content = firepad.getText();
-                        responsivevoice.speak("document has the following content : " + content);
+                        responsiveVoice.speak("document has the following content : " + content);
                     }
                 };
                 annyang.addCommands(speakCommand);
@@ -272,7 +272,7 @@
                 var clearPadCommand = {
                     'close My Hands': function () {
                         firepad.dispose();
-                        responsivevoice.speak("Firepad has been closed kindly reload the tab");
+                        responsiveVoice.speak("My Hands Closed kindly reload the tab");
                     }
                 };
 
@@ -280,7 +280,7 @@
                 var clearText = {
                     'clear text': function () {
                         firepad.setHtml(" ");
-                        responsivevoice.speak("All Text Cleared...");
+                        responsiveVoice.speak("All Text Cleared...");
                     }
                 };
 
