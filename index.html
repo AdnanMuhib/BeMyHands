@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/BeMyHands.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <!-- Firebase -->
+    <script src="js/firepad/firebase.js"></script>
+    <!-- CodeMirror -->
+    <script src="js/firepad/codemirror.js"></script>
+    <link rel="stylesheet" href="css/codemirror.css" />
+    <!-- Firepad -->
+    <link rel="stylesheet" href="css/firepad.css" />
+    <script src="js/firepad/firepad.min.js"></script>
+
+
+    <script src="speakClient.js"></script>
+    <script src="annyang.min.js"></script>
+    <script src="firepad-userlist.js"></script>
+    <script src="speechkitt.min.js"></script>
+    <link rel="stylesheet" href="firepad-userlist.css" />
+</head>
+
+<body onload="init()">
+
+    <header>
+        <div class="header-item">
+            <img src='../assets/images/hands-logo.png'>
+        </div>
+        <div class="header-item logo">BEMYHANDS</div>
+    </header>
+
+    <div class="container">
+        <div class="container-item users-list">
+            <!-- <div class="container-item users-list-title">Online Users</div>
+            <div class="container-item">
+                <div class="circle">&nbsp;</div>
+                <div class="user-name">Adam Smith</div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="container-item">
+                <div class="circle">&nbsp;</div>
+                <div class="user-name">Adam Smith</div>
+                <div class="clear-fix"></div>
+            </div>
+            <div class="container-item">
+                <div class="circle">&nbsp;</div>
+                <div class="user-name">Adam Smith</div>
+                <div class="clear-fix"></div>
+            </div> -->
+        </div>
+
+        <div class="container-item" id="chat"></div>
+    </div>
+
+
+    <div id="userlist">
+    </div>
+    <div id="audio"></div>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function init() {
+
+            // Configurations for the writing pad
+            var font_size = 'medium';
+            var userColor = 'black';
+            var heading_1 = false;
+            var heading_2 = false;
+            var paragraph = true;
+            var heading_3 = false;
+            var heading_4 = true;
+            var bold_text = false;
+
+            // Initialize Firebase.
+            // TODO: replace with your Firebase project configuration.
+            var config = {
+                apiKey: "AIzaSyC_JdByNm-E1CAJUkePsr-YJZl7W77oL3g",
+                authDomain: "firepad-tests.firebaseapp.com",
+                databaseURL: "https://firepad-tests.firebaseio.com"
+            };
+            firebase.initializeApp(config);
+
+            // Get Firebase Database reference.
+            var firepadRef = getExampleRef();
+
+            // Create CodeMirror (with lineWrapping on).
+            var codeMirror = CodeMirror(document.getElementById('chat'), {
+                lineWrapping: true
+            });
+            // Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
+            var userId = Math.floor(Math.random() * 9999999999).toString();
+            // Create Firepad (with rich text toolbar and shortcuts enabled).
+            var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+                richTextToolbar: true,
+                richTextShortcuts: true,
+                userId: userId
+            });
+
+
+            // Getting color for user.
+            userColor = getRandomColor();
+
+            // Setting sidebar color for user.
+            firepad.setUserColor(userColor);
+
+            // Create FirepadUserList (with our desired userId).
+            var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'),
+                document.getElementById('userlist'), userId);
+
+                // Initialize contents.
+            firepad.on('ready', function () {
+                if (firepad.isHistoryEmpty()) {
+                    var old_content = firepad.getHtml();
+                    console.log(old_content);
+
+                    var temp_content = old_content + '<div class="container-item chat-title">CHAT</div>\n';
+                    firepad.setHtml( temp_content );
+                }
+            });
+            if (annyang) {
+
+                // Tell KITT to use annyang
+                SpeechKITT.annyang();
+                // Let's define Some Commands.
+                var headingOne = {
+                    'set heading 1': function () {
+                        console.log("Heading 1 turned on..");
+                        document.getElementById('MyCommand').innerHTML = "Heading 1 turned on..";
+                        var heading_1 = true;
+                        var heading_2 = false;
+                        var paragraph = false;
+                        var heading_3 = false;
+                        var heading_4 = false;
+                        var bold_text = false;
+                    }
+                };
+                // Add command to annyang
+                annyang.addCommands(headingOne);
+                // define  other command
+                var headingTwo = {
+                    'set heading 2': function () {
+                        console.log("Heading 2 turned on..");
+                        document.getElementById('MyCommand').innerHTML = "Heading 2 turned on..";
+                        var heading_1 = false;
+                        var heading_2 = true;
+                        var paragraph = false;
+                        var heading_3 = false;
+                        var heading_4 = false;
+                        var bold_text = false;
+                    }
+                };
+                annyang.addCommands(headingTwo);
+
+                var headingThree = {
+                    'set heading 3': function () {
+                        console.log("Heading 3 turned on..");
+                        document.getElementById('MyCommand').innerHTML = "Heading 3 turned on..";
+                        var heading_1 = false;
+                        var heading_2 = false;
+                        var paragraph = false;
+                        var heading_3 = true;
+                        var heading_4 = false;
+                        var bold_text = false;
+                    }
+                };
+                annyang.addCommands(headingThree);
+
+                var headingFour = {
+                    'set heading 4': function () {
+                        console.log("Heading 4 turned on..");
+                        document.getElementById('MyCommand').innerHTML = "Heading 4 turned on..";
+                        var heading_1 = false;
+                        var heading_2 = false;
+                        var paragraph = false;
+                        var heading_3 = false;
+                        var heading_4 = true;
+                        var bold_text = false;
+                    }
+                };
+                annyang.addCommands(headingFour);
+
+                var paragraph = {
+                    'set paragraph': function () {
+                        console.log("paragraph turned on..");
+                        document.getElementById('MyCommand').innerHTML = "Paragraph turned on..";
+                        var heading_1 = false;
+                        var heading_2 = false;
+                        var paragraph = true;
+                        var heading_3 = false;
+                        var heading_4 = false;
+                    }
+                };
+                annyang.addCommands(paragraph);
+
+                var boldText = {
+                    'set bold *sw': function (sw) {
+                        if (sw == "on") {
+                            console.log("Bold Text turned on..");
+                            document.getElementById('MyCommand').innerHTML = "Bold Text turned on..";
+                            speak("Bold Text Turned on");
+                            var bold_text = true;
+                        }
+                        if (sw == "off" || sw == "of") {
+                            console.log("Bold Text turned off..");
+                            speak("Bold Text Turned off");
+                            document.getElementById('MyCommand').innerHTML = "Bold Text turned off..";
+                            var bold_text = false;
+                        }
+                        var heading_1 = false;
+                        var heading_2 = false;
+                        var heading_3 = false;
+                        var heading_4 = false;
+
+                    }
+                };
+                annyang.addCommands(boldText);
+
+                var setFontSize = {
+                    'set font size *size': function (size) {
+                        font_size = size;
+                        document.getElementById('MyCommand').innerHTML = "Font Size set to " + size;
+                        speak("Font Size set to " + size);
+                        console.log(font_size);
+                    }
+                };
+                annyang.addCommands(setFontSize);
+
+                var setFontColor = {
+                    'set font colour *color': function (color) {
+                        userColor = color;
+                        document.getElementById('MyCommand').innerHTML = "Font Color set to " + color;
+                        speak("Font Color set to " + color);
+                        console.log(userColor);
+                    }
+                };
+                annyang.addCommands(setFontColor);
+
+                var reloadCommand = {
+                    'reload': function () {
+                        location.reload();
+                        speak("Tab has been reloaded successfully");
+                    }
+                };
+                annyang.addCommands(reloadCommand);
+
+                var speakCommand = {
+                    'speak': function () {
+                        var content = firepad.getText();
+                        speak("document has the following content : " + content);
+                    }
+                };
+                annyang.addCommands(speakCommand);
+
+                var clearPadCommand = {
+                    'close firepad': function () {
+                        firepad.dispose();
+                        speak("Firepad has been closed kindly reload the tab");
+                    }
+                };
+
+                annyang.addCommands(clearPadCommand);
+                var clearText = {
+                    'clear text': function () {
+                        firepad.setHtml(" ");
+                        speak("All Text Cleared...");
+                    }
+                };
+
+                annyang.addCommands(clearText);
+                // Define a stylesheet for KITT to use
+                SpeechKITT.setStylesheet('themes/flat-emerald.css');
+
+                annyang.addCallback('resultNoMatch', function (userSaid, commandText, phrases) {
+                    var old_content = firepad.getHtml();
+                    var content = old_content + '<div class="container-item chat-text" ' +
+                    'style="font-size:' + font_size + ';color:' + userColor + ';">'+
+                    userSaid[0] + '</div>';
+                    firepad.setHtml( content );
+                    console.log("Hey, I am content", content);
+                });
+
+                // Start listening.
+                annyang.start();
+                // Render KITT's interface
+                SpeechKITT.vroom();
+                // Start listening.
+                annyang.start();
+            }
+
+
+        }
+
+        // Helper to get hash from end of URL or generate a random one.
+        function getExampleRef() {
+            var ref = firebase.database().ref();
+            var hash = window.location.hash.replace(/#/g, '');
+            if (hash) {
+                ref = ref.child(hash);
+            } else {
+                ref = ref.push(); // generate unique location.
+                window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
+            }
+            if (typeof console !== 'undefined') {
+                console.log('Firebase data: ', ref.toString());
+            }
+            return ref;
+        }
+    </script>
+
+</body>
+
+</html>

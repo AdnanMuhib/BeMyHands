@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="speakClient.js"></script>
+    <script src="annyang.min.js"></script>
+</head>
+
+<body>
+    <div id="audio"></div>
+</body>
+<script type="text/javascript">
+if (annyang) {
+
+    var sayThis = function(repeat) {
+        speak(repeat);
+    }
+
+    // Let's define a command.
+    // var commands = {
+    //   '*repeat': sayThis
+    // };
+    annyang.addCallback('result', function(phrases) {
+        console.log("I think the user said: ", phrases[0]);
+        console.log("But then again, it could be any of the following: ", phrases);
+    });
+    // Turn on debugging for the console
+    //annyang.debug();
+
+    // Initialize annyang with our commands
+    // annyang.init(commands);
+
+    // Start listening.
+    annyang.start();
+}
+</script>
+
+</html>

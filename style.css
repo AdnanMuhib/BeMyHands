@@ -1,0 +1,48 @@
+#firepad {
+    background-color: orange !important;
+    /* dark orange background */
+}
+
+.powered-by-firepad {
+    display: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+
+/* Height / width / positioning can be customized for your use case.
+       For demo purposes, we make the user list 175px and firepad fill the rest of the page. */
+
+#userlist {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    bottom: 0;
+    height: 100%;
+    width: 25%;
+    padding: 35px;
+}
+
+#firepad {
+    position: absolute;
+    left: 25%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: auto;
+}
+.firepad-toolbar{
+	    background-color: #2b3350 !important;
+}
+#MyCommand{
+	font-size: large;
+	color: red;
+	padding: 0px;
+}

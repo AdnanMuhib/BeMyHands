@@ -1,0 +1,157 @@
+/*
+  Oh Hello!
+
+  These are some base styles so that our tutorial looks good.
+
+  Let's go through the important bits real quick
+*/
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+  --grey: #e4e4e4;
+  --chat-bg: #2b3350;
+  --users-bg: #30272a;
+  --chat-title: #b6b6b6;
+}
+
+html {
+  /* border-box box model allows us to add padding and border to our elements without increasing their size */
+  box-sizing: border-box;
+  /* A system font stack so things load nice and quick! */
+  font-family: -apple-system, BlinkMacSystemFont, "Montserrat", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--black);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+
+/*
+  WAT IS THIS?!
+  We inherit box-sizing: border-box; from our <html> selector
+  Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
+*/
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #141a2e;
+  min-height: calc(100vh - 100px);
+  color: white;
+  margin: 10px;
+  font-size: 15px;
+  background-position: fixed;
+  letter-spacing: -1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 5px 0;
+}
+/* Each item in our grid will contain numbers */
+.item {
+  /* We center the contents of these items. You can also do this with flexbox too! */
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+  font-size: 35px;
+  background-color: var(--yellow); /* best colour */
+}
+
+.item p {
+  margin: 0 0 5px 0;
+}
+
+/* HEADER STYLING */
+header {
+  color: var(--grey);
+  min-height: 40px;
+  padding: 10px 10px 10px 30px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  display: grid;
+  grid-template-columns: 50px 200px;
+
+}
+
+.header-item > img {
+  width: 40px;
+}
+
+.logo {
+  padding-top: 10px;
+  font-weight: 700;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 74%;
+  grid-gap: 10px;
+}
+
+
+
+.users-list {
+  background: linear-gradient(110deg, #5f79fe, #de72f9);
+  /* /letter-spacing: .15em; */
+  letter-spacing: 0;
+  padding: 35px;
+}
+
+.users-list-title {
+  color: var(--users-bg);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.container-item {
+  margin: 5px 0;
+  /* background-color: var(--yellow); */
+}
+
+.circle {
+  min-width: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background-color: var(--yellow);
+  float: left;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+
+.clear-fix {
+  clear: both;
+}
+
+.user-name {
+  float: left;
+  font-size: 15px;
+  font-family: 'Open Sans';
+  /* font-weight: 300; */
+}
+
+#chat {
+  background-color: var(--chat-bg);
+  letter-spacing: 0;
+  padding: 35px;
+  height: 100vh;
+}
+
+.chat-title {
+  color: var(--chat-title);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.chat-text {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 15px;
+}

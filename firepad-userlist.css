@@ -1,0 +1,96 @@
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+  --grey: #e4e4e4;
+  --chat-bg: #2b3350;
+  --users-bg: #30272a;
+  --chat-title: #b6b6b6;
+}
+
+.firepad-userlist {
+  /* default height */
+  height: 400px;
+  min-width: 175px;
+  margin: 10px 0;
+  font-weight: 700 !important;
+  /* background: linear-gradient(110deg, #5f79fe, #de72f9); */
+  color: #404040;
+}
+
+.firepad-userlist {
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  line-height: normal;
+}
+
+.firepad-userlist-heading {
+  color: var(--users-bg);
+  font-family: 'Montserrat';
+
+  text-transform: uppercase;
+  font-weight: 700;
+  /* border-bottom: 2px solid #c9c9c9; */
+}
+
+.firepad-userlist-users {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 85px;
+  bottom: 10px;
+  padding: 0 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.firepad-userlist-user {
+  position: relative;
+  margin: 8px 0;
+  height: 32px;
+  /* border-bottom: 1px solid #c9c9c9; */
+  padding-bottom: 5px;
+}
+
+.firepad-userlist-color-indicator {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 30px;
+}
+
+input.firepad-userlist-name-input {
+  position: absolute;
+  left: 38px;
+  top: 0;
+  width: 105px;
+  height: 20px;
+  border: 0;
+  border-bottom: 1px solid #d6d6d6;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 1px;
+}
+
+.firepad-userlist-name-hint {
+  letter-spacing: 0.2em;
+  position: absolute;
+  left: 38px;
+  top: 23px;
+  width: 300px; /* I'd rather it clip than wrap. */
+  font-size: 9px;
+  line-height: 11px;
+}
+
+.firepad-userlist-name {
+  position: absolute;
+  top: 2px;
+  left: 38px;
+  width: 95px;
+  font-size: 13px;
+}
