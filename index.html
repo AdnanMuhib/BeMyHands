@@ -143,7 +143,6 @@
                 var headingOne = {
                     'set heading 1': function () {
                         console.log("Heading 1 turned on..");
-                        document.getElementById('MyCommand').innerHTML = "Heading 1 turned on..";
                         var heading_1 = true;
                         var heading_2 = false;
                         var paragraph = false;
@@ -158,7 +157,6 @@
                 var headingTwo = {
                     'set heading 2': function () {
                         console.log("Heading 2 turned on..");
-                        document.getElementById('MyCommand').innerHTML = "Heading 2 turned on..";
                         var heading_1 = false;
                         var heading_2 = true;
                         var paragraph = false;
@@ -172,7 +170,6 @@
                 var headingThree = {
                     'set heading 3': function () {
                         console.log("Heading 3 turned on..");
-                        document.getElementById('MyCommand').innerHTML = "Heading 3 turned on..";
                         var heading_1 = false;
                         var heading_2 = false;
                         var paragraph = false;
@@ -186,7 +183,6 @@
                 var headingFour = {
                     'set heading 4': function () {
                         console.log("Heading 4 turned on..");
-                        document.getElementById('MyCommand').innerHTML = "Heading 4 turned on..";
                         var heading_1 = false;
                         var heading_2 = false;
                         var paragraph = false;
@@ -200,7 +196,6 @@
                 var paragraph = {
                     'set paragraph': function () {
                         console.log("paragraph turned on..");
-                        document.getElementById('MyCommand').innerHTML = "Paragraph turned on..";
                         var heading_1 = false;
                         var heading_2 = false;
                         var paragraph = true;
@@ -214,14 +209,12 @@
                     'set bold *sw': function (sw) {
                         if (sw == "on") {
                             console.log("Bold Text turned on..");
-                            document.getElementById('MyCommand').innerHTML = "Bold Text turned on..";
                             responsiveVoice.speak("Bold Text Turned on");
                             var bold_text = true;
                         }
                         if (sw == "off" || sw == "of") {
                             console.log("Bold Text turned off..");
                             speak("Bold Text Turned off");
-                            document.getElementById('MyCommand').innerHTML = "Bold Text turned off..";
                             var bold_text = false;
                         }
                         var heading_1 = false;
@@ -236,7 +229,6 @@
                 var setFontSize = {
                     'set font size *size': function (size) {
                         font_size = size;
-                        document.getElementById('MyCommand').innerHTML = "Font Size set to " + size;
                         responsiveVoice.speak("Font Size set to " + size);
                         console.log(font_size);
                     }
@@ -246,8 +238,7 @@
                 var setFontColor = {
                     'set font colour *color': function (color) {
                         userColor = color;
-                        document.getElementById('MyCommand').innerHTML = "Font Color set to " + color;
-                        speak("Font Color set to " + color);
+                        responsiveVoice.speak("Font Color set to " + color);
                         console.log(userColor);
                     }
                 };
