@@ -46,3 +46,22 @@ body {
 	color: red;
 	padding: 0px;
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-gap: 10px;
+    margin:
+    }
+    #userlist {
+        padding: 10px;
+        width: 100%;
+    }
+    .firepad-userlist-users {
+        padding: 0px;
+    }
+    .firepad-userlist-user {
+        font-size: 8px;
+    }
+}
