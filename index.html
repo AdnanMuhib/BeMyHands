@@ -23,10 +23,14 @@
     <script src="firepad-userlist.js"></script>
     <script src="speechkitt.min.js"></script>
     <link rel="stylesheet" href="firepad-userlist.css" />
+    <script type="text/javascript" src="responsivevoice.js"></script>
 </head>
 
 <body onload="init()">
-
+	<script type="text/javascript">
+		responsiveVoice.setDefaultVoice("Hindi Female");
+		responsiveVoice.speak("Welcome to Be My Hands");
+	</script>
     <header>
         <div class="header-item">
             <img src='./assets/images/hands-logo.png'>
@@ -211,7 +215,7 @@
                         if (sw == "on") {
                             console.log("Bold Text turned on..");
                             document.getElementById('MyCommand').innerHTML = "Bold Text turned on..";
-                            speak("Bold Text Turned on");
+                            responsivevoice.speak("Bold Text Turned on");
                             var bold_text = true;
                         }
                         if (sw == "off" || sw == "of") {
@@ -233,7 +237,7 @@
                     'set font size *size': function (size) {
                         font_size = size;
                         document.getElementById('MyCommand').innerHTML = "Font Size set to " + size;
-                        speak("Font Size set to " + size);
+                        responsivevoice.speak("Font Size set to " + size);
                         console.log(font_size);
                     }
                 };
@@ -252,7 +256,7 @@
                 var reloadCommand = {
                     'reload': function () {
                         location.reload();
-                        speak("Tab has been reloaded successfully");
+                        responsivevoice.speak("Tab has been reloaded successfully");
                     }
                 };
                 annyang.addCommands(reloadCommand);
@@ -260,15 +264,15 @@
                 var speakCommand = {
                     'speak': function () {
                         var content = firepad.getText();
-                        speak("document has the following content : " + content);
+                        responsivevoice.speak("document has the following content : " + content);
                     }
                 };
                 annyang.addCommands(speakCommand);
 
                 var clearPadCommand = {
-                    'close firepad': function () {
+                    'close My Hands': function () {
                         firepad.dispose();
-                        speak("Firepad has been closed kindly reload the tab");
+                        responsivevoice.speak("Firepad has been closed kindly reload the tab");
                     }
                 };
 
@@ -276,7 +280,7 @@
                 var clearText = {
                     'clear text': function () {
                         firepad.setHtml(" ");
-                        speak("All Text Cleared...");
+                        responsivevoice.speak("All Text Cleared...");
                     }
                 };
 
