@@ -178,7 +178,7 @@ var FirepadUserList = (function() {
 
   function isValidColor(color) {
     return typeof color === 'string' &&
-      (color.match(/^#[a-fA-F0-9]{3,6}$/) || color == 'transparent');
+      (color.match(/^#[a-fA-F0-9]{3,6}$/) || color == 'transparent' || color == 'none');
   }
 
 
