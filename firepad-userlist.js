@@ -1,5 +1,5 @@
 var FirepadUserList = (function() {
-  function FirepadUserList(ref, place, userId, displayName) {
+ function FirepadUserList(ref, place, userId, displayName) {
     if (!(this instanceof FirepadUserList)) {
       return new FirepadUserList(ref, place, userId, displayName);
     }
@@ -239,4 +239,5 @@ var FirepadUserList = (function() {
   }
 
   return FirepadUserList;
+
 })();
