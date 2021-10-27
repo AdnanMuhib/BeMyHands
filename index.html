@@ -61,7 +61,6 @@
         <div class="container-item" id="chat"></div>
     </div>
 
-
     <div id="userlist"> &nbsp;
     </div>
     <div id="audio"></div>
@@ -78,7 +77,6 @@
         }
 
         function init() {
-
             // Configurations for the writing pad
             var font_size = 'medium';
             var userColor = 'black';
@@ -113,7 +111,6 @@
                 richTextShortcuts: true,
                 userId: userId
             });
-
 
             // Getting color for user.
             userColor = getRandomColor();
@@ -295,8 +292,6 @@
                 // Start listening.
                 annyang.start();
             }
-
-
         }
 
         // Helper to get hash from end of URL or generate a random one.
@@ -315,7 +310,5 @@
             return ref;
         }
     </script>
-
 </body>
-
 </html>
